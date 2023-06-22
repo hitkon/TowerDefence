@@ -1,0 +1,20 @@
+8 8
+20002000
+11001100
+01110111
+00030003
+00130013
+00100010
+00100010
+21102110
+1
+aaaaaaaaaaaaa
+4
+0 0
+flfrflffrf
+0 4
+flfrflffrf
+7 0
+lfflfffrf
+7 4
+lfflfffrf
