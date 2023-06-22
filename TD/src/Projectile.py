@@ -1,5 +1,5 @@
 from Vector2d import Vector2d
-
+import pygame
 
 class Projectile:
 
@@ -13,6 +13,7 @@ class Projectile:
     def __init__(self, project_info, position, target, source):
         self.damage = project_info.damage
         self.speed = project_info.speed
+        self.image_path = project_info.image_path
         self.position = position
         self.target = target
         self.source = source
@@ -28,4 +29,8 @@ class Projectile:
         self.position = Vector2d(self.position.x + t * dx, self.position.y + t * dy)
         return False
 
+    def getImage(self):
+        image = pygame.image.load(self.image_path)
+        image = pygame.transform.scale(image, (25, 25))
+        return image
 

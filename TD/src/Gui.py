@@ -28,8 +28,12 @@ class Gui:
 
         myfont = pygame.font.SysFont("monospace", 15)
 
-        arrow = pygame.image.load("images/arrow.jpg")
-        arrow = pygame.transform.scale(arrow, (25, 25))
+        # arrow = pygame.image.load("images/arrow.jpg")
+        # arrow = pygame.transform.scale(arrow, (25, 25))
+        arr_tower = pygame.image.load("images/ArrowTower.jpg")
+        arr_tower = pygame.transform.scale(arr_tower, (50, 50))
+        can_tower = pygame.image.load("images/canon.png")
+        can_tower = pygame.transform.scale(can_tower, (50, 50))
 
         screen = pygame.display.set_mode(size)
 
@@ -65,16 +69,16 @@ class Gui:
                                 and not game_map.is_occupied(Vector2d(y,x)):
                             #print(event.pos[0], event.pos[1], y, x)
                             if tower_clicked == 0:
-                                game_eng.addTower(ArrowTower(Vector2d(y, x), 0, ProjectileInfo(1, 3)))
+                                game_eng.addTower(ArrowTower(Vector2d(y, x), 0, ProjectileInfo(1, 3, "images/arrow.jpg")))
                             elif tower_clicked == 1:
-                                game_eng.addTower(CanonTower(Vector2d(y, x), 0, ProjectileInfo(0.5, 3)))
+                                game_eng.addTower(CanonTower(Vector2d(y, x), 0, ProjectileInfo(0.5, 7, "images/canon_proj.png")))
 
                         tower_clicked = -1
                 if event.type == pygame.MOUSEMOTION:
                     pass
 
-            screen.blit(ArrowTower.getImage(), (map_w * cell_size, 0 * cell_size))
-            screen.blit(CanonTower.getImage(), (map_w * cell_size, 1 * cell_size))
+            screen.blit(arr_tower, (map_w * cell_size, 0 * cell_size))
+            screen.blit(can_tower, (map_w * cell_size, 1 * cell_size))
 
             # map drawing
             for i in range(map_w):
@@ -89,15 +93,15 @@ class Gui:
                 screen.blit(tower.getImage(), (tower.pos.y * cell_size, tower.pos.x * cell_size))
 
             for proj in game_eng.projectile_list:
-                screen.blit(arrow, (proj.position.y * cell_size, proj.position.x * cell_size))
+                screen.blit(proj.getImage(), (proj.position.y * cell_size, proj.position.x * cell_size))
 
 
             if tower_clicked != -1:
                 #print(event.pos[0], event.pos[1])
                 if tower_clicked == 0:
-                    screen.blit(ArrowTower.getImage(), (event.pos[0], event.pos[1]))
+                    screen.blit(arr_tower, (event.pos[0], event.pos[1]))
                 elif tower_clicked == 1:
-                    screen.blit(CanonTower.getImage(), (event.pos[0], event.pos[1]))
+                    screen.blit(can_tower, (event.pos[0], event.pos[1]))
 
             #pygame.display.flip()
 
