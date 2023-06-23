@@ -17,8 +17,8 @@ class CanonTower(Tower):
         arr_tower = pygame.transform.scale(arr_tower, (50, 50))
         return arr_tower
 
-
-# def getImage():
-#     arr_tower = pygame.image.load("images/canon.png")
-#     arr_tower = pygame.transform.scale(arr_tower, (50, 50))
-#     return arr_tower
+    @staticmethod
+    def getImage():
+        arr_tower = pygame.image.load("images/canon.png")
+        arr_tower = pygame.transform.scale(arr_tower, (50, 50))
+        return arr_tower

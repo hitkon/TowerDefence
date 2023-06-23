@@ -18,7 +18,7 @@ class Gui:
 
         pygame.init()
 
-        game_map = Map("maps/map1.txt")
+        game_map = Map("maps/map0.txt")
         game_eng = Engine(game_map)
 
         # map initialization
@@ -27,13 +27,6 @@ class Gui:
         tower_clicked = -1
 
         myfont = pygame.font.SysFont("monospace", 15)
-
-        # arrow = pygame.image.load("images/arrow.jpg")
-        # arrow = pygame.transform.scale(arrow, (25, 25))
-        arr_tower = pygame.image.load("images/ArrowTower.jpg")
-        arr_tower = pygame.transform.scale(arr_tower, (50, 50))
-        can_tower = pygame.image.load("images/canon.png")
-        can_tower = pygame.transform.scale(can_tower, (50, 50))
 
         screen = pygame.display.set_mode(size)
 
@@ -77,8 +70,8 @@ class Gui:
                 if event.type == pygame.MOUSEMOTION:
                     pass
 
-            screen.blit(arr_tower, (map_w * cell_size, 0 * cell_size))
-            screen.blit(can_tower, (map_w * cell_size, 1 * cell_size))
+            screen.blit(ArrowTower.getImage(), (map_w * cell_size, 0 * cell_size))
+            screen.blit(CanonTower.getImage(), (map_w * cell_size, 1 * cell_size))
 
             # map drawing
             for i in range(map_w):
@@ -99,16 +92,16 @@ class Gui:
             if tower_clicked != -1:
                 #print(event.pos[0], event.pos[1])
                 if tower_clicked == 0:
-                    screen.blit(arr_tower, (event.pos[0], event.pos[1]))
+                    screen.blit(ArrowTower.getImage(), (event.pos[0], event.pos[1]))
                 elif tower_clicked == 1:
-                    screen.blit(can_tower, (event.pos[0], event.pos[1]))
+                    screen.blit(CanonTower.getImage(), (event.pos[0], event.pos[1]))
 
             #pygame.display.flip()
 
             label = myfont.render("Killed: " + str(game_eng.enemy_killed), 1, (0, 0, 0))
             label2 = myfont.render("Passed: " + str(game_eng.enemy_passed), 1, (0, 0, 0))
-            screen.blit(label, (36,419))
-            screen.blit(label2, (170, 419))
+            screen.blit(label, (36,map_h* cell_size))
+            screen.blit(label2, (36, map_h* cell_size + 20))
 
             pygame.display.update()
             game_eng.iterate()
